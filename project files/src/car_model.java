@@ -81,4 +81,8 @@ public class car_model {
     public double model_revenue() {
         return sales_price * number_sold;
     }
+
+    public static void main(String[] args) {
+        System.out.println("car_model.java runs");
+    }
 }
