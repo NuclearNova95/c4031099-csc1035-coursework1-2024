@@ -81,10 +81,4 @@ public class car_model {
     public double model_revenue() {
         return sales_price * number_sold;
     }
-
-    public static void main(String[] args) {
-        car_model car = new car_model("Toyota Corolla", 1300, 20000, 150, car_type.SALOON);
-        System.out.println(car);
-        System.out.println("Total revenue: £" + car.model_revenue());
-    }
 }
