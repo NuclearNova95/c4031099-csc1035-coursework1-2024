@@ -1,5 +1,5 @@
 public class manufacturer {
-    private String name;
+    private final String name;
     private car_model[] models;
 
     // Constructor
