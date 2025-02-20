@@ -2,7 +2,7 @@
  * represents cars with name, weight, price, sales and type
  */
 public class car_model {
-    private String name;
+    private final String name;
     private double weight;
     private double sales_price;
     private int number_sold;
@@ -26,6 +26,9 @@ public class car_model {
      * @throws IllegalArgumentException if weight, price, or number sold is invalid
      */
     public car_model(String name, double weight, double sales_price, int number_sold, car_type type) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Car name cannot be blank.");
+        }
         if (weight < 500 || weight > 3000) {
             throw new IllegalArgumentException("Weight must be between 500kg and 3000kg.");
         }

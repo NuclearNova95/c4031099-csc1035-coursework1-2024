@@ -4,7 +4,7 @@ import java.util.Scanner;
  * handles user input and reporting system for manufacturers and car models
  */
 public class reportingIO {
-    private static manufacturer[] manufacturers = new manufacturer[10]; // store up to 10 manufacturers
+    private static final manufacturer[] manufacturers = new manufacturer[10]; // store up to 10 manufacturers
     private static int manufacturerCount = 0; // track how many have been added
 
     /**
