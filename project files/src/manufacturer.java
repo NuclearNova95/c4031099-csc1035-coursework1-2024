@@ -1,72 +1,104 @@
+/**
+ * represents car manufacturer with models and revenue tracking
+ */
 public class manufacturer {
     private final String name;
     private car_model[] models;
 
-    // Constructor
+    /**
+     * constructs manufacturer
+     * @param name name of the manufacturer
+     * @param models array of car models
+     */
     public manufacturer(String name, car_model[] models) {
         this.name = name;
         this.models = models;
     }
 
-    // Getters
+    /**
+     * gets manufacturer name
+     * @return name of manufacturer
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * gets car models
+     * @return array of car models
+     */
     public car_model[] getModels() {
         return models;
     }
 
-    // Setters
-    public void setModels(car_model[] models) {
+    /**
+     * set car models for manufacturer
+     * @param models array of car models
+     */
+    public void set_models(car_model[] models) {
         this.models = models;
     }
 
-    //method to return total revenue of type
-    public double totalRevenueByType(car_model.car_type type) {
+    /**
+     * calc total revenue by car type
+     * @param type car type (HATCHBACK, SALOON, ESTATE)
+     * @return total revenue for given type
+     */
+    public double total_revenue_by_type(car_model.car_type type) {
         double total = 0;
         for (car_model model : models) {
-            if (model.getType() == type) {
+            if (model.get_type() == type) {
                 total += model.model_revenue();
             }
         }
         return total;
     }
 
-    //method to return all models with price greater than value
-    public car_model[] filterModelsByPrice(double minPrice) {
+    /**
+     * filter models by min price
+     * @param minPrice minimum price threshold
+     * @return array of models above min price
+     */
+    public car_model[] filter_models_by_price(double minPrice) {
         int count = 0;
         for (car_model model : models) {
-            if (model.getSales_price() > minPrice) {
+            if (model.get_sales_price() > minPrice) {
                 count++;
             }
         }
 
-        car_model[] filteredModels = new car_model[count];
+        car_model[] filtered_models = new car_model[count];
         int index = 0;
         for (car_model model : models) {
-            if (model.getSales_price() > minPrice) {
-                filteredModels[index++] = model;
+            if (model.get_sales_price() > minPrice) {
+                filtered_models[index++] = model;
             }
         }
-        return filteredModels;
+        return filtered_models;
     }
 
-    //method to find most expensive car
-    public car_model mostExpensiveCar() {
+    /**
+     * find most expensive car model
+     * @return most expensive car model
+     */
+    public car_model most_expensive_car() {
         if (models.length == 0) {
             return null;
         }
 
-        car_model mostExpensive = models[0];
+        car_model most_expensive = models[0];
         for (car_model model : models) {
-            if (model.getSales_price() > mostExpensive.getSales_price()) {
-                mostExpensive = model;
+            if (model.get_sales_price() > most_expensive.get_sales_price()) {
+                most_expensive = model;
             }
         }
-        return mostExpensive;
+        return most_expensive;
     }
 
+    /**
+     * return string details of manufacturer and models
+     * @return formatted string of manufacturer details
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -78,7 +110,10 @@ public class manufacturer {
         return sb.toString();
     }
 
+    /**
+     * main method to test manufacturer class
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         System.out.println("manufacturer.java runs");
-    }
-}
+    }}

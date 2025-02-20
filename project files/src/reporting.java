@@ -1,62 +1,76 @@
+/**
+ * handles reporting for manufacturers and car models
+ */
 public class reporting {
-    private final manufacturer[] manufacturers; // Stores all manufacturers
+    private final manufacturer[] manufacturers; // stores all manufacturers
 
-    // Constructor
+    /**
+     * constructs reporting object
+     * @param manufacturers array of manufacturers
+     */
     public reporting(manufacturer[] manufacturers) {
         this.manufacturers = manufacturers;
     }
 
-    // most expensive CarModel between all manufacturers
-    public car_model mostExpensiveCarOverall() {
-        car_model mostExpensive = null;
+    /**
+     * gets most expensive car across all manufacturers
+     * @return most expensive car model
+     */
+    public car_model most_expensive_car() {
+        car_model most_expensive = null;
         for (manufacturer m : manufacturers) {
-            car_model expensiveCar = m.mostExpensiveCar();
-            if (mostExpensive == null || (expensiveCar != null && expensiveCar.getSales_price() > mostExpensive.getSales_price())) {
-                mostExpensive = expensiveCar;
-            }
-        }
-        return mostExpensive;
+            car_model expensive_car = m.most_expensive_car();
+            if (most_expensive == null || (expensive_car != null && expensive_car.get_sales_price() > most_expensive.get_sales_price())) {
+                most_expensive = expensive_car;
+            }}
+        return most_expensive;
     }
 
-    // manufacturer with the highest revenue for given type
-    public manufacturer highestRevenueByType(car_model.car_type type) {
-        manufacturer topManufacturer = null;
-        double highestRevenue = 0;
+    /**
+     * finds manufacturer with most revenue for given type
+     * @param type car type (HATCHBACK, SALOON, ESTATE)
+     * @return manufacturer with highest revenue for type
+     */
+    public manufacturer most_rev_type(car_model.car_type type) {
+        manufacturer top_manufacturer = null;
+        double most_rev = 0;
 
         for (manufacturer m : manufacturers) {
-            double revenue = m.totalRevenueByType(type);
-            if (revenue > highestRevenue) {
-                highestRevenue = revenue;
-                topManufacturer = m;
-            }
-        }
-        return topManufacturer;
+            double revenue = m.total_revenue_by_type(type);
+            if (revenue > most_rev) {
+                most_rev = revenue;
+                top_manufacturer = m;
+            }}
+        return top_manufacturer;
     }
 
-    // all CarModels above a given price threshold
-    public car_model[] carsAbovePrice(double minPrice) {
+    /**
+     * gets all models above a given price
+     * @param minPrice minimum price threshold
+     * @return array of car models above price
+     */
+    public car_model[] above_price(double minPrice) {
         int count = 0;
         for (manufacturer m : manufacturers) {
             for (car_model model : m.getModels()) {
-                if (model.getSales_price() > minPrice) {
+                if (model.get_sales_price() > minPrice) {
                     count++;
-                }
-            }
-        }
+                }}}
 
-        car_model[] expensiveCars = new car_model[count];
+        car_model[] expensive_cars = new car_model[count];
         int index = 0;
         for (manufacturer m : manufacturers) {
             for (car_model model : m.getModels()) {
-                if (model.getSales_price() > minPrice) {
-                    expensiveCars[index++] = model;
-                }
-            }
-        }
-        return expensiveCars;
+                if (model.get_sales_price() > minPrice) {
+                    expensive_cars[index++] = model;
+                }}}
+        return expensive_cars;
     }
 
+    /**
+     * main method to test reporting class
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         System.out.println("reporting.java runs");
-    }
-}
+    }}
